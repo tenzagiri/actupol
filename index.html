@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Actu Politique FR</title>
+<meta name="theme-color" content="#111827">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<style>
+  :root{
+    --bg:#f5f5f7; --card:#ffffff; --text:#111; --sub:#666;
+    --accent:#0055ff; --border:#e5e5e5;
+  }
+  [data-theme="dark"]{
+    --bg:#0d1117; --card:#161b22; --text:#f0f0f0; --sub:#9aa4b2;
+    --accent:#4d9dff; --border:#2a2f38;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+    background:var(--bg); color:var(--text); transition:background .2s,color .2s;
+    padding-bottom:70px;
+  }
+  header{
+    position:sticky; top:0; z-index:10;
+    background:var(--card); border-bottom:1px solid var(--border);
+    padding:12px 16px; display:flex; align-items:center; gap:10px;
+  }
+  header h1{font-size:18px; margin:0; flex:1;}
+  header button{
+    background:none; border:none; cursor:pointer; font-size:20px; color:var(--text);
+    padding:6px;
+  }
+  .search-bar{
+    padding:10px 16px; background:var(--bg);
+  }
+  .search-bar input{
+    width:100%; padding:10px 14px; border-radius:10px; border:1px solid var(--border);
+    background:var(--card); color:var(--text); font-size:14px;
+  }
+  .filters{
+    display:flex; gap:8px; overflow-x:auto; padding:8px 16px 4px;
+  }
+  .filters button{
+    flex-shrink:0; padding:6px 12px; border-radius:20px; border:1px solid var(--border);
+    background:var(--card); color:var(--text); font-size:12px; cursor:pointer; white-space:nowrap;
+  }
+  .filters button.active{ background:var(--accent); color:#fff; border-color:var(--accent); }
+  main{ padding:8px 16px; max-width:700px; margin:0 auto; }
+  .article{
+    background:var(--card); border:1px solid var(--border); border-radius:14px;
+    padding:14px; margin-bottom:12px; display:block; text-decoration:none; color:var(--text);
+  }
+  .article .source{ font-size:11px; color:var(--accent); font-weight:600; text-transform:uppercase; }
+  .article h2{ font-size:16px; margin:6px 0; line-height:1.35; }
+  .article .desc{ font-size:13px; color:var(--sub); line-height:1.4; margin:4px 0; }
+  .article .meta{ font-size:11px; color:var(--sub); margin-top:6px; }
+  .status{ text-align:center; padding:20px; color:var(--sub); font-size:13px; }
+  .refresh-fab{
+    position:fixed; bottom:20px; right:20px; background:var(--accent); color:#fff;
+    border:none; border-radius:50%; width:52px; height:52px; font-size:22px;
+    box-shadow:0 4px 12px rgba(0,0,0,.25); cursor:pointer; z-index:20;
+  }
+  .refresh-fab.spinning{ animation:spin 1s linear infinite; }
+  @keyframes spin{ from{transform:rotate(0deg);} to{transform:rotate(360deg);} }
+  .empty{ text-align:center; padding:40px 20px; color:var(--sub); }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>🏛️ Actu Politique FR</h1>
+  <button id="themeToggle" title="Mode sombre">🌙</button>
+</header>
+
+<div class="search-bar">
+  <input type="text" id="searchInput" placeholder="Rechercher un mot-clé, un nom, un parti...">
+</div>
+
+<div class="filters" id="filters"></div>
+
+<main id="main">
+  <div class="status" id="status">Chargement des actualités...</div>
+</main>
+
+<button class="refresh-fab" id="refreshBtn" title="Rafraîchir">⟳</button>
+
+<script src="app.js"></script>
+</body>
+</html>
